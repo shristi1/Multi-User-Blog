@@ -1,0 +1,45 @@
+<!-- An Individual Blog Post's Page -->
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if error %}
+         <div class="alert alert-danger" role="alert">
+         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{error}}
+        </div>
+    {% endif %}
+
+	{{post.render() | safe}}
+    
+    <form method="post" role="form">
+	    <input type="hidden" class="form-control" id="like" name="like" value="update">
+	    <button type="submit" class="btn btn-primary btn-xs">Like {{likeCount}}</button>
+	</form>
+
+    <a class="btn btn-danger btn-xs" href="/blog/deletepost/{{post.key().id()}}">Delete</a>
+    <a class="btn btn-info btn-xs" href="/blog/editpost/{{post.key().id()}}">Edit</a>
+
+
+	<form method="post" role="form" class="comment-form">
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <input type="text" class="form-control" id="comment" name="comment" value="">
+        </div>
+        <button type="submit" class="btn btn-success btn-xs">Submit</button>
+    </form>
+
+    {% for c in comments %}
+        <blockquote>
+            <p>
+                {{ c.comment }}
+            </p>
+            <footer>
+                {{c.getUserName()}}
+                <sub>(Posted on {{c.created.strftime("%b %d, %Y")}})</sub>
+            </footer>
+            <a class="btn btn-danger btn-xs" href="/blog/deletecomment/{{post.key().id()}}/{{c.key().id()}}">Delete</a>
+            <a class="btn btn-info btn-xs" href="/blog/editcomment/{{post.key().id()}}/{{c.key().id()}}">Edit</a>
+        </blockquote>
+    {% endfor %}
+{% endblock %}

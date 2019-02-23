@@ -1,0 +1,26 @@
+<!-- Edit a comment page -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Comment</h2>
+
+        <form method="post" role="form">
+            <input type="hidden" id="post_id" name="post_id" value="{{post_id}}">
+            
+            <div class="form-group">
+                <label for="subject">Comment:</label>
+                <input type="text" class="form-control" id="comment" name="comment" value="{{comment}}">
+            </div>
+
+            <button type="submit">Save Edit</button>
+            <button onclick="goBack()">Cancel</button>
+
+        </form>
+
+{% endblock %}
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>

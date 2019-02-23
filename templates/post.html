@@ -1,0 +1,18 @@
+<!-- Show a Post on the Main Blog Page -->
+<div class="post">
+  <div class="post-heading">
+
+    <a href="/blog/{{p.key().id()}}#" class="post-title">
+      {{p.subject}}
+    </a>
+
+    <small class="post-date">
+      (Posted on {{p.created.strftime("%b %d, %Y")}} by {{p.getUserName()}})
+    </small>
+
+  </div>
+
+  <div class="post-content">
+    {{p._render_text | safe}}
+  </div>
+</div>

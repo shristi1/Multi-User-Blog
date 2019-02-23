@@ -1,0 +1,39 @@
+<!-- Base Template to be used for all pages -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Blog</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <a href="/?" class="main-title">
+    Blog
+  </a>
+  <div class="login-area">
+    {% if user %}
+      {{user.name}} | <a class="login-link" href="/logout">Logout</a>
+      |
+      <a class="login-link" href="/blog/newpost">Add Post</a>
+    {% else %}
+      <a class="login-link" href="/login">login</a>
+      |
+      <a class="login-link" href="/signup">signup</a>
+    {% endif %}
+  </div>
+  <hr>
+
+  <!-- Content -->
+  <div id="content">
+  {% block content %}
+  {% endblock %}
+  </div>
+
+</body>
+
+</html>
+

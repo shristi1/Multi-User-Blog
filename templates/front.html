@@ -1,0 +1,17 @@
+<!-- Main Blog Home Page -->
+{% extends "base.html" %}
+
+{% block content %}
+	{% if deleted_post_id %}
+    	The post was successully deleted!
+    {% endif %}
+
+	{% for post in posts %}
+		{% if post.key().id()|string != deleted_post_id|string %}
+        {{ post.render() | safe }}
+        <br><br>
+        {% endif %}
+	
+	{% endfor %}
+
+{% endblock %}
